@@ -6,8 +6,18 @@
         else
             -- WAGON
             
-            -- set weight to half + 2
-            data.metadata.railVehicle.weight = data.metadata.railVehicle.weight / 2 + 2
+            if data.metadata.transportVehicle.capacities[1].type == "PASSENGERS" then
+                -- Passenger wagon
+                -- set weight to 80%
+                data.metadata.railVehicle.weight = data.metadata.railVehicle.weight * 0.8
+                
+            else
+                -- Cargo wagon
+                -- set weight to 60%
+                data.metadata.railVehicle.weight = data.metadata.railVehicle.weight * 0.6
+            end
+            
+            
             
             -- set wagon lifespan little closer to 60
             data.metadata.maintenance.lifespan = 
@@ -15,9 +25,9 @@
                 + ((60 - data.metadata.maintenance.lifespan) / 2)
                 
             -- recalculate running costs
-            data.metadata.maintenance.runningCosts = 
-                data.metadata.railVehicle.topSpeed * 
-                data.metadata.railVehicle.weight * 75
+            --data.metadata.maintenance.runningCosts = 
+            --    data.metadata.railVehicle.topSpeed * 
+            --    data.metadata.railVehicle.weight * 90 - 5
         end
     end
     return data
@@ -41,8 +51,8 @@ function data()
             minorVersion   = 0,
             severityAdd    = "NONE",
             severityRemove = "NONE",
-            name           = _("Wagon Rebalance"),
-            description    = _("Wagons running costs and weights rebalanced"),
+            name           = _("Shot Rebalance"),
+            description    = _("Game mechanics rebalanced"),
             tags           = { "Script Mod" },
             authors = { 
                 { 	name = 'SHOT(by)GUN',
