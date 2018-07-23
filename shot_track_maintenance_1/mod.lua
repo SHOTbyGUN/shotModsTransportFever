@@ -7,7 +7,12 @@ local function getSpeed(data)
 end
 
 local function modifyTrack(fileName, data)
-    data.maintenanceCost = getSpeed(data) * 0.02
+    -- reduce low speed tracks maintenance cost
+    if getSpeed(data) < 130 then
+        data.maintenanceCost = getSpeed(data) * 0.01
+    else
+        data.maintenanceCost = getSpeed(data) * 0.02
+    end
     data.catenaryMaintenanceCost = 2 + getSpeed(data) * 0.01
     data.desc = data.desc .. "\nMaintenance: " .. data.maintenanceCost .. " $/m"
     data.desc = data.desc .. "\nMaintenance catenary: " .. data.catenaryMaintenanceCost .. " $/m"
