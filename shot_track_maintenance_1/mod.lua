@@ -1,7 +1,7 @@
 local function getSpeed(data)
     if data.speedLimit then
         -- return data.speedLimit * 3.6
-	return  math.pow ( data.speedLimit, 2) * 0.025	
+	return  data.speedLimit * data.speedLimit * 0.025	
     else
         return 300
     end
